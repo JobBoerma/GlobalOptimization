@@ -1,0 +1,12 @@
+
+*.o
+*.mod
+*.a
+\#*\#
+*.*~
+.dropbox
+*.pdf
+*.xls
+*.zip
+*.lyx
+*.fig

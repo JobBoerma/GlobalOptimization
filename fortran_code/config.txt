@@ -1,0 +1,65 @@
+! The configuration file for generic search. 
+!
+! Do not edit the order of the parameters or data, as the parsing assumes the
+! order below is given.
+!
+! Format:
+! 	1) Lines starting with ! are comments
+!	2) Do not have any blank lines. i.e. blank lines should at least have a ! in the first column
+!	3) A value of -1 means use the default value (not valid for all parameters)
+!
+! Settings:
+! 	1) # parameters - The dimension of the search space for minimization (must be > 0)
+! 	2) # moments targetting - ???
+! 	3) maximum evaluations - the maximum number of evaluations the minimization routine will execute
+!                            (if -1, then equals 40*(nx+1))
+! 	4) # draws - the number of sobol points to generate (if -1, then equals 500)
+! 	5) maximum points - the number of sobol points to search over for global extreme (should be
+!                       less than # draws) ( if -1, then equals min(200, #draws) )
+!   6) selectType - when choosing next point to evaluate, which point do we converge to?
+!                      0: The best point found so far
+!                      1: Lottery, where we rank top n points and the probability of picking
+!                         a point is inversely related to its rank.
+!                         Note: n is given in the next parameter
+!   7) lotteryPoints - the number of points to use in the lottery if specified in the previous parameter.
+!                      (if -1, then default to all i.e. maximum points)
+!
+!# parameters, # moments targetting, # simulated indiv., maximum evaluations, # draws, maximum points, selectType, lotteryPoints
+7, 297, -1, 500, 50, 0, -1
+!
+! for each parameter, the range of values. This specifies the values from which the sobol
+! points are selected. These lines are mandatory
+! Note: If simply updating sobol points, then these values are ignored
+! Do not separate these parameters with any comments
+0.05, .5      
+0.6,.9
+.1,1.
+-1., -.1
+0.01,  1.
+0.01,  1. 
+0.01, 1.
+!
+! for each parameter, the initial guess. These lines are mandatory
+! Note: If simply updating sobol points, then these values are ignored
+! Do not separate these parameters with any comments
+  0.498901784    
+  0.770047426    
+  0.969323814    
+ -0.326865137    
+  0.373716950    
+  0.485830516    
+   8.30167085E-02
+!
+! for each parameter, the parameter bounds. These specify the absolute
+! maximum and minimum values for which we should evaluate the functions.
+! These lines are mandatory (for simplified code)
+! but are ignored if not using bobyq as the minimization routine.
+! Note: If simply updating sobol points, then these values are ignored
+! Do not separate these parameters with any comments
+0.001, 1.      
+0.1,.99
+.1,1.
+-1., -.1
+0.001,  1.
+0.001,  1. 
+0.001,  1.
