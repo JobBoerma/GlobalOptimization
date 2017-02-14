@@ -19,9 +19,9 @@ rm -f startingPoints.dat
 ###########################################################################################################
 echo "compiling..."
 
-ifort -O3 -g -heap-arrays nrtype.f90 myParams.f90 stateControl.f90 genericParams.f90 utilities.f90 simplex.f90 objective.f90 minimize.f90 GlobalSearch.f90 -o GlobalSearch
-#ifort -m64 -g -debug all -heap-arrays nrtype.f90 stateControl.f90 genericParams.f90 simplex.f90 global.f90 objective_griewank.f90 utilities.f90 minimize.f90 GlobalSearch.f90 -o GlobalSearch
-# gfortran -O3               nrtype.f90 myParams.f90 stateControl.f90 genericParams.f90 utilities.f90 simplex.f90 objective.f90 minimize.f90 GlobalSearch.f90 -o GlobalSearch
+# ifort -O3 -g -heap-arrays nrtype.f90 myParams.f90 stateControl.f90 genericParams.f90 utilities.f90 simplex.f90 objective.f90 minimize.f90 GlobalSearch.f90 -o GlobalSearch
+# ifort -m64 -g -debug all -heap-arrays nrtype.f90 stateControl.f90 genericParams.f90 simplex.f90 global.f90 objective_griewank.f90 utilities.f90 minimize.f90 GlobalSearch.f90 -o GlobalSearch
+gfortran -O3               nrtype.f90 myParams.f90 stateControl.f90 genericParams.f90 utilities.f90 simplex.f90 objective.f90 minimize.f90 GlobalSearch.f90 -o GlobalSearch
 
 if [ $? -ne 0 ]; then
   echo "Errors compiling GlobalSearch"
@@ -33,7 +33,9 @@ fi
 echo "run Monte Carlo..."
 
 #need to allow modifying txt file, otherwise cannot rewrite
-chmod u+x config.txt
+# chmod u+x config.txt
+chmod 777 config.txt
+
 
 #declare variables
 declare -i n m dim lineout linein imp
@@ -136,7 +138,7 @@ for i in $(seq 1 $imp); do
 
 	# run minimization with Bobyqa algo on Yale cluster
 	# bsub -q $queue -W $timelimit ./GlobalSearch 0 config.txt b & 
-	ifort -03 ./GlobalSearch 0 config.txt a &
+	./GlobalSearch 0 config.txt b &
 
 	# go back to folder results
 	cd ../../../
@@ -146,7 +148,7 @@ for i in $(seq 1 $imp); do
 
 	# run minimization with Amoeba algo on Yale cluster
 	# bsub -q $queue -W $timelimit ./GlobalSearch 0 config.txt a &
-	ifort -03 ./GlobalSearch 0 config.txt a &
+	./GlobalSearch 0 config.txt a &
 	 
 	# go back to folder results
 	cd ../../../

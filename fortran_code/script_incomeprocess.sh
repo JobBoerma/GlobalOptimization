@@ -20,6 +20,8 @@ gfortran -O3               nrtype.f90 myParams.f90 stateControl.f90 genericParam
 
 # commentize the section below when running one a single core and give bottom line as inline command
 
-echo "Compiling"
- 
-./GlobalSearch 0 config.txt a | tee log_GlobalSearch.txt
+# echo "Compiling"
+
+sleep 30
+./GlobalSearch 0 config.txt a | tee log_GlobalSearch.txt & sleep 30
+./GlobalSearch 1 a

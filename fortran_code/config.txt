@@ -25,7 +25,7 @@
 !                      (if -1, then default to all i.e. maximum points)
 !
 !# parameters, # moments targetting, # simulated indiv., maximum evaluations, # draws, maximum points, selectType, lotteryPoints
-7, 297, -1, 500, 50, 0, -1
+7, 297, -1, 10, 3, 0, -1
 !
 ! for each parameter, the range of values. This specifies the values from which the sobol
 ! points are selected. These lines are mandatory

@@ -574,7 +574,8 @@ contains
         END SELECT
 
         w11=min(max(0.10, (sqrt(real(whichPoint)/real(p_maxpoints)))),0.995)
-        y= w11*basePoint+(1.0_DP-w11)*evalPoint
+        ! y = w11*basePoint+(1.0_DP-w11)*evalPoint
+        y = basePoint
     END FUNCTION getModifiedParam
 
     FUNCTION getLotteryPoint(lotPointSelect) RESULT (y)
